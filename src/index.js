@@ -64,7 +64,7 @@ async function getTrends(pgNum) {
 } 
 
 function drawPgNums(pgCurrent) {
-    pgNumsMarkup = `
+    const pgNumsMarkup = `
             <button type="button" class="pg-btn" data-page="prev">&lt;-</button>
             <button type="button" class="num-btn" data-page="first">1</button>
             <span class="num-btn">...</span>    
