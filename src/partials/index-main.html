@@ -1,6 +1,26 @@
 <main class="main">
   <div class="container">
     <ul id="trends" class="gallery"></ul>
-    <div id="pages"></div>
+    <div id="pagination">
+      <button type="button" class="pg-btn btn-left" data-page="prev">
+        <svg class="pg-btn-arrow">
+          <use
+            class="pg-btn-icon"
+            href="./images/sprite.svg#icon-arrow-left"
+          ></use>
+        </svg>
+      </button>
+
+      <div id="page-numbers"></div>
+
+      <button type="button" class="pg-btn btn-right" data-page="next">
+        <svg class="pg-btn-arrow">
+          <use
+            class="pg-btn-icon"
+            href="./images/sprite.svg#icon-arrow-right"
+          ></use>
+        </svg>
+      </button>
+    </div>
   </div>
 </main>

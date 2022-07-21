@@ -1,4 +1,4 @@
-#pages {
+#pagination {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -37,6 +37,7 @@
 }
 
 .btn-left {
+    margin-right: 3px;
     // background-image: url('../images/arrow-left-icon.svg');
     // background-position: center center;
     // background-repeat: no-repeat;
@@ -44,6 +45,7 @@
 }
 
 .btn-right {
+    margin-left: 3px;
     // background-image: url('../images/arrow-right-icon.svg');
     // background-position: center center;
     // background-repeat: no-repeat;
@@ -54,6 +56,11 @@
 .btn-right:hover {
     background-color: var(--accent-color);
     color: white;
+}
+
+#page-numbers {
+    display: flex;
+    align-items: center;
 }
 
 .num-btn {
@@ -83,4 +90,12 @@
 .pg-btn--cur {
     color: #FFFFFF;
     background-color: var(--accent-color);
+}
+
+.mobile-hiding {
+    display: none;
+
+    @media screen and (min-width: 768px) {
+        display: flex;
+    }
 }

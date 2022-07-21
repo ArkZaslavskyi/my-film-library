@@ -7,7 +7,8 @@ import { showErrorMsg, hideErrorMsg } from "./errorMessage";
 // const movieGenres = getMovie('genres', '', 1).then(data => console.log(data));
 
 const galleryRef = document.querySelector('.gallery');
-const pageNumRef = document.querySelector('#pages');
+const paginationRef = document.querySelector('#pagination')
+const pageNumRef = document.querySelector('#page-numbers');
 const formRef = document.querySelector('.form');
 
 const MOVIES_PER_PAGE = 20;
@@ -54,7 +55,7 @@ async function reDrawMovies(rules, pgNum, queryString) {
     await drawGallery(galleryRef, movies.results);
     await drawPagination(pageNumRef, movies.page, movies.total_pages > 20 ? 20 : movies.total_pages);
 
-    await pageNumRef.addEventListener('click', onPgNumClk);
+    await paginationRef.addEventListener('click', onPgNumClk);
     await galleryRef.addEventListener('click', onGalleryClk);
 
     await window.scrollTo(0, 0);
@@ -94,11 +95,15 @@ function onGalleryClk(e) {
 
 /* = */
 function onPgNumClk(e) {
-    const targetPageNum = e.target.dataset.page;
-    
-    if (!targetPageNum) {
-        return;
-    }
+    if (!e.target.closest('[data-page]')) {
+        return
+    };
+
+    const targetPageNum = e.target.closest('[data-page]').dataset.page;
+
+    // if (!targetPageNum) {
+    //     return;
+    // }
 
     const movies = JSON.parse(localStorage.getItem(MOVIES_KEY))
 
