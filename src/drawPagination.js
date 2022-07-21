@@ -1,20 +1,28 @@
+/*
+ *  MAIN Function for Drawing Pagination on the current Movies Gallery
+ */
+
+import { NUMS_PER_PAGE } from "./basedConst";
+
 export function drawPagination(pgRef, pgCurrent, totalPages) {
     const pgNumsMarkup = `
-            <button type="button" class="pg-btn" data-page="prev">&lt;-</button>
+            <button type="button" class="pg-btn btn-left" data-page="prev"></button>
             <button type="button" class="num-btn" data-page="first">1</button>
             <span class="num-btn">...</span>    
             ${pgNumsCurrPgMarkup(pgCurrent, totalPages)}
             <span class="num-btn">...</span>    
             <button type="button" class="num-btn" data-page="last">${totalPages}</button>
-            <button type="button" class="pg-btn" data-page="next">-&gt;</button>
+            <button type="button" class="pg-btn btn-right" data-page="next">
+                <svg class="pg-btn-arrow">
+                    <use class="pg-btn-icon" href="./images/sprite.svg#icon-arrow-right"></use>
+                </svg>
+            </button>
         `;
-    
+
     pgRef.innerHTML = pgNumsMarkup;
 }
 
 function pgNumsCurrPgMarkup(pgCurrent, totalPages) {
-    const NUMS_PER_PAGE = 5;
-
     let pgBegin = 1;
     let pgEnd = totalPages;
 

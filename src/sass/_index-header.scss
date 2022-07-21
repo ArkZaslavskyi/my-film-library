@@ -1,89 +1,16 @@
-header {
-    padding-top: 40px;
-    height: 230px;
+@import './header';
+@import './nav';
 
+header {
     background-image: url('../images/background-home-320x230.jpg');
 
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: left top;
-
     @media screen and (min-width: 768px) {
-    height: 216px;
-    background-image: url('../images/background-home-768x216.jpg');
+        background-image: url('../images/background-home-768x216.jpg');
     }
 
     @media screen and (min-width: 1280px) {
         background-image: url('../images/background-home-1280x216.jpg');
     }
-}
-
-.logo {
-    height: 24px;
-    width: 24px;
-    background-image: url('../images/film-logo.svg');
-
-    @media screen and (min-width: 768px) {
-        width: 163px;
-        background-image: url('../images/film-logo-big.svg');    }
-}
-
-nav {
-    width: 100%;
-    display: flex;
-    justify-content: left;
-    align-items: center;
-}
-
-.nav__menu {
-    margin: 0;
-    padding: 0;
-
-    width: 144px;
-    // width: 50%;
-    margin-left: auto;
-    // margin-left: calc(50% - 24px);
-
-    // @media screen and (min-width: 768px) {
-    //     margin-left: calc(50% - 163px);
-    // }
-
-    display: flex;
-    align-items: center;
-}
-
-.nav__item {
-    list-style: none;
-}
-
-.nav__item:last-child {
-    margin-left: auto;
-}
-
-.nav__link {
-    position: relative;
-
-    display: block;
-
-    font-size: 12px;
-    line-height: 14px;
-    color: #FFFFFF;
-    text-decoration: none;
-    text-transform: uppercase;
-}
-
-.nav__link--curr::after {
-    content: '';
-    display: block;
-
-    position: absolute;
-    top: calc(100% + 3px);
-    left: 0;
-
-    width: 100%;
-    height: 3px;
-
-    background-color: var(--add-color);
 }
 
 .form {
@@ -94,10 +21,12 @@ nav {
 
     margin-top: 54px;
     width: 100%;
+
     @media screen and (min-width: 768px) {
         margin-top: 46px;
         width: 336px;
     }
+    
     @media screen and (min-width: 1280px) {
         width: 394px;
         margin-top: 40px;
@@ -128,14 +57,13 @@ nav {
     font-weight: 400;
     font-size: 14px;
     line-height: 16px;
-
 }
 
 .form__input::placeholder {
     color: #FFFFFFBB;
 }
 
-.form__btn {
+.form__btn-submit {
     width: 12px;
     height: 12px;
     color: none;
@@ -144,14 +72,13 @@ nav {
     border: none;
     background-image: url('../images/search-icon.svg');
     object-fit: fill;
-    cursor: pointer;
-}
+    cursor: pointer;}
 
 .form__error {
     margin-top: 16px;
     width: 100%;
     text-align: left;
-    
+
     @media screen and (min-width: 768px) {
         margin-top: 20px;
         text-align: center;

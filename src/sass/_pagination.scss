@@ -20,9 +20,40 @@
 
     border: none;
     border-radius: 5px;
+
     background-color: #F7F7F7;
+    color: #000000;
 
     cursor: pointer;
+}
+
+.pg-btn-arrow {
+    width: 12px;
+    height: 12px;
+}
+
+.pg-btn-icon {
+    fill: currentColor;
+}
+
+.btn-left {
+    // background-image: url('../images/arrow-left-icon.svg');
+    // background-position: center center;
+    // background-repeat: no-repeat;
+    // object-fit: none; 
+}
+
+.btn-right {
+    // background-image: url('../images/arrow-right-icon.svg');
+    // background-position: center center;
+    // background-repeat: no-repeat;
+    // object-fit: none;
+}
+
+.btn-left:hover,
+.btn-right:hover {
+    background-color: var(--accent-color);
+    color: white;
 }
 
 .num-btn {

@@ -1,11 +1,15 @@
 import axios from "axios";
 axios.defaults.baseURL = 'https://api.themoviedb.org/3';
 
-export async function getGenres() {
-    const GENRES = 'genres';
+const GET_MOVIES_RULES = {
+    genres: 'genres',
+    trends: 'trends',
+    search: 'search',
+};
 
+export async function getGenres() {
     try {
-        const resp = await getMovie(GENRES, '');
+        const resp = await getMovie(GET_MOVIES_RULES.genres);
         return resp.data.genres;
     } catch (error) {
         
@@ -13,10 +17,8 @@ export async function getGenres() {
 }
 
 export async function getTrends(pgNum) {
-    const TRENDS = 'trending';
-    
     try {
-        const resp = await getMovie(TRENDS, '', pgNum);
+        const resp = await getMovie(GET_MOVIES_RULES.trends, pgNum, '');
         await console.log(resp.data);
         return resp.data;
     } catch (error) {
@@ -24,12 +26,32 @@ export async function getTrends(pgNum) {
     }
 }
 
-function getMovie(rules, queryString, pgCurrent) {
+export async function getSearch(pgNum, queryString) {
+    try {
+        const resp = await getMovie(GET_MOVIES_RULES.search, pgNum, queryString);
+        await console.log(resp.data);
+        return resp.data;
+    } catch (error) {
+        return resp.status_message;
+    }
+}
+
+export async function getMovies(rules, pgNum, queryString) {
+    try {
+        const resp = await getMovie(rules, pgNum, queryString);
+        await console.log(resp.data);
+        return resp.data;
+    } catch (error) {
+        return resp.status_message;
+    }
+}
+
+function getMovie(rules, pgCurrent, queryString) {
     // const API_TOKEN_v4 = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiMjgyYTIyYWU2NjVmNWYxN2EzMmEwNzcwMTNkMjQzYyIsInN1YiI6IjYyZDA4MTA1NmQ5ZmU4MDk0NDJhMjliOSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.2nF_t43BUCf_perKaDjWwMGkDKQg8Nc1YsaBHf5n2ZY';
     const API_KEY = 'b282a22ae665f5f17a32a077013d243c';
     const GET_RULES = {
         genres: '/genre/movie/list',
-        trending: '/trending/movie/day',
+        trends: '/trending/movie/day',
         search: '/search/movie',
     };
 
@@ -38,10 +60,11 @@ function getMovie(rules, queryString, pgCurrent) {
                     api_key: API_KEY,
                     language: 'en-US',
                     include_adult: false,
-                    page: pgCurrent,
-                    query: queryString,
                 },
     };
+
+    if (pgCurrent) { configAxios.params.page = pgCurrent };
+    if (queryString) { configAxios.params.query = queryString };
 
     const resp = axios.get(GET_RULES[rules], configAxios);
     return resp;
