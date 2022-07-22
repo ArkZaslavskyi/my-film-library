@@ -27,29 +27,21 @@
     cursor: pointer;
 }
 
-.pg-btn-arrow {
+.pg-btn__arrow {
     width: 12px;
     height: 12px;
 }
 
-.pg-btn-icon {
+.pg-btn__icon {
     fill: currentColor;
 }
 
 .btn-left {
     margin-right: 3px;
-    // background-image: url('../images/arrow-left-icon.svg');
-    // background-position: center center;
-    // background-repeat: no-repeat;
-    // object-fit: none; 
 }
 
 .btn-right {
     margin-left: 3px;
-    // background-image: url('../images/arrow-right-icon.svg');
-    // background-position: center center;
-    // background-repeat: no-repeat;
-    // object-fit: none;
 }
 
 .btn-left:hover,

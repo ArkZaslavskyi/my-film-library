@@ -7,7 +7,7 @@ import { showErrorMsg, hideErrorMsg } from "./errorMessage";
 // const movieGenres = getMovie('genres', '', 1).then(data => console.log(data));
 
 const galleryRef = document.querySelector('.gallery');
-const paginationRef = document.querySelector('#pagination')
+const paginationRef = document.querySelector('#pagination');
 const pageNumRef = document.querySelector('#page-numbers');
 const formRef = document.querySelector('.form');
 
@@ -24,7 +24,7 @@ const GET_MOVIES_RULES = {
 const STORAGE_KEYS = {
     watched: 'watchedAll',
     queue: 'queueAll',
-}
+};
 
 getAndRenderInitialValues();
 

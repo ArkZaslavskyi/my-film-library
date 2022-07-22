@@ -7,35 +7,6 @@ const GET_MOVIES_RULES = {
     search: 'search',
 };
 
-export async function getGenres() {
-    try {
-        const resp = await getMovie(GET_MOVIES_RULES.genres);
-        return resp.data.genres;
-    } catch (error) {
-        
-    }
-}
-
-export async function getTrends(pgNum) {
-    try {
-        const resp = await getMovie(GET_MOVIES_RULES.trends, pgNum, '');
-        await console.log(resp.data);
-        return resp.data;
-    } catch (error) {
-        
-    }
-}
-
-export async function getSearch(pgNum, queryString) {
-    try {
-        const resp = await getMovie(GET_MOVIES_RULES.search, pgNum, queryString);
-        await console.log(resp.data);
-        return resp.data;
-    } catch (error) {
-        return resp.status_message;
-    }
-}
-
 export async function getMovies(rules, pgNum, queryString) {
     try {
         const resp = await getMovie(rules, pgNum, queryString);
@@ -43,6 +14,15 @@ export async function getMovies(rules, pgNum, queryString) {
         return resp.data;
     } catch (error) {
         return resp.status_message;
+    }
+}
+
+export async function getGenres() {
+    try {
+        const resp = await getMovie(GET_MOVIES_RULES.genres);
+        return resp.data.genres;
+    } catch (error) {
+        
     }
 }
 
@@ -69,12 +49,45 @@ function getMovie(rules, pgCurrent, queryString) {
     const resp = axios.get(GET_RULES[rules], configAxios);
     return resp;
 };
+
+/* ============================================================================== */
+
+// const GET_MOVIES_RULES = {
+//     genres: 'genres',
+//     trends: 'trends',
+//     search: 'search',
+// };
+
+
+// export async function getTrends(pgNum) {
+//     try {
+//         const resp = await getMovie(GET_MOVIES_RULES.trends, pgNum, '');
+//         await console.log(resp.data);
+//         return resp.data;
+//     } catch (error) {
+        
+//     }
+// }
+
+// export async function getSearch(pgNum, queryString) {
+//     try {
+//         const resp = await getMovie(GET_MOVIES_RULES.search, pgNum, queryString);
+//         await console.log(resp.data);
+//         return resp.data;
+//     } catch (error) {
+//         return resp.status_message;
+//     }
+// }
+
+/* ============================================================================== */
+
     // FETCH - request
     // const queryStr = `${BASE_URL}${GET_RULES[rules]}?${getParams}`;
     // console.log(queryStr);
     // return fetch(queryStr)
     //  .then(resp => resp.json());
 
+/* ============================================================================== */
 
     // API-sample: https://api.themoviedb.org/3/movie/550?api_key=b282a22ae665f5f17a32a077013d243c
 
@@ -99,3 +112,5 @@ function getMovie(rules, pgCurrent, queryString) {
     // https://api.themoviedb.org/3/search/movie?api_key=b282a22ae665f5f17a32a077013d243c&query=cat&page=1&include_adult=false
     
     // const GET_RULES = '/search/movie';
+
+/* ============================================================================== */
