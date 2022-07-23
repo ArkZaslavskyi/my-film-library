@@ -6,7 +6,8 @@ const queueBtnRef = document.querySelector('#queue');
 const watchedBtnRef = document.querySelector('#watched');
 const buttonsRef = document.querySelector('.header__buttons');
 const galleryRef = document.querySelector('.gallery');
-const pageNumRef = document.querySelector('#pages');
+const paginationRef = document.querySelector('#pagination');
+const pageNumRef = document.querySelector('#page-numbers');
 // 
 const MOVIES_PER_PAGE = 20;
 const LOCAL_MOVIES_KEY = 'localMovies';
@@ -48,7 +49,7 @@ function reDrawLocalMovies(rules, pgNum) {
         drawGallery(galleryRef, localMovies.results);
         drawPagination(pageNumRef, pgNum, localMovies.total_pages);
     
-        pageNumRef.addEventListener('click', onPgNumClk);
+        paginationRef.addEventListener('click', onPgNumClk);
         galleryRef.addEventListener('click', onGalleryClk);
     } else {
 
@@ -89,13 +90,17 @@ function onGalleryClk(e) {
 };
 
 function onPgNumClk(e) {
+    if (!e.target.closest('[data-page]')) {
+        return
+    };
+
     pageNumRef.removeEventListener('click', onPgNumClk);
 
-    const targetPageNum = e.target.dataset.page;
-    
-    if (!targetPageNum) {
-        return;
-    }
+    const targetPageNum = e.target.closest('[data-page]').dataset.page;
+
+    // if (!targetPageNum) {
+    //     return;
+    // }
 
     const localMovies = JSON.parse(localStorage.getItem(LOCAL_MOVIES_KEY));
 

@@ -22,20 +22,32 @@ function createCardMarkup ({poster_path, genre_ids, title, release_date, vote_av
     // release_date - date (string) in format 'YYYY-MM-DD'
     // vote_average - vote (number)
 
+    const NO_IMG = 'https://upload.wikimedia.org/wikipedia/commons/c/c2/No_image_poster.png';
+    const imageToDraw = poster_path ? `${IMG_BASE_URL}${IMG_FILE_SIZE}${poster_path}` : NO_IMG;
+
+    const voteColor = changeVoteBoxColor(vote_average);
+    
     return `
     <li class="gallery__item" data-movie="${movieNumber}">
         <a class="gallery__link">
             <div class="img__wrap">
-                <img class="gallery__img" src="${IMG_BASE_URL}${IMG_FILE_SIZE}${poster_path}">
+                <img class="gallery__img" src="${imageToDraw}">
             </div>
             <p class="gallery__info">
                 <span class="gallery__info--title">${title}</span>
                 <span class="galery__info--text">${createListOfGenres(genre_ids)} | ${release_date ? release_date.slice(0, 4) : ''}</span>
-                <span class="gallery__info--vote">${vote_average.toFixed(1)}</span>
+                <span class="gallery__info--vote ${voteColor}">${vote_average.toFixed(1)}</span>
             </p>
         </a>
     </li>
     `;
+}
+
+function changeVoteBoxColor(vote) {
+    if (vote < 3) return 'gallery__info--vote-poor';
+    if (vote < 5) return 'gallery__info--vote-low';
+    if (vote < 7) return 'gallery__info--vote-medium';
+    return 'gallery__info--vote-high';
 }
 
 function createListOfGenres(genre_ids) {
